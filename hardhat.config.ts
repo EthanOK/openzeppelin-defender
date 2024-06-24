@@ -5,7 +5,15 @@ import "@openzeppelin/hardhat-upgrades";
 require("dotenv").config();
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.20",
+  solidity: {
+    version: "0.8.20",
+    settings: {
+      optimizer: {
+        enabled: false,
+        runs: 200,
+      },
+    },
+  },
   defender: {
     apiKey: process.env.DEFENDER_KEY as string,
     apiSecret: process.env.DEFENDER_SECRET as string,
@@ -15,6 +23,12 @@ const config: HardhatUserConfig = {
       url: "https://ethereum-sepolia.publicnode.com",
       chainId: 11155111,
     },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_KEY as string,
+  },
+  sourcify: {
+    enabled: false,
   },
 };
 
